@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <button onclick="shareUrl();">share</button>
+</div>
+
+@section Scripts {
+<script>
+    shareUrl = function() {
+        if (!navigator.share) return;
+
+        navigator.share({
+                url: "https://mywebsite.com",
+                title: "Sharing Cool things",
+                text: "Checkout my really cool website."
+            })
+            .then(() => { console.log("Shared YEEEE!!!!!"); })
+            .catch((error) => { console.log("Sharing Failed") });
+    }
+</script>
+}

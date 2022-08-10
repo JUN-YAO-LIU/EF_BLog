@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "ckeditor@4.19.1",
+      "destination": "wwwroot/ckeditor/",
+      "files": [
+        "ckeditor.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@ckeditor/ckeditor5-font@35.0.1",
+      "destination": "wwwroot/ckeditor5/ckeditor5-font/"
+    }
+  ]
+}
