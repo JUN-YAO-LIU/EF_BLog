@@ -26,10 +26,17 @@ namespace EFBlog.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Article()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult PostContent(string Content)
         {
-            return View();
+            TempData["Content"] = Content;
+            return RedirectToAction("Article");
         }
 
         // 前端欄位名稱已經固定
@@ -40,7 +47,7 @@ namespace EFBlog.Controllers
             var fileName = Guid.NewGuid() + Path.GetExtension(upload.FileName).ToLower();
 
             var filePath = Path.Combine(
-                   Directory.GetCurrentDirectory(), "wwwroot/12/images",
+                   Directory.GetCurrentDirectory(), "wwwroot/images",
                    fileName);
 
             using (var stream = System.IO.File.Create(filePath))
