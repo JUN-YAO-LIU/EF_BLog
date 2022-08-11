@@ -1,0 +1,26 @@
+﻿<form asp-controller="Article" asp-action="CreateArticle" method="post">
+    <div class="form-group">
+
+        <textarea name="Content" class="form-control" id="editor"></textarea>
+
+    </div>
+    <button type="submit">Send</button>
+</form>
+
+@section Scripts {
+@*<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>*@
+<script src="~/ckeditor6/build/ckeditor.js"></script>
+<script>
+    // ckEdit 5
+        ClassicEditor
+        .create( document.querySelector( '#editor' ) , {
+            ckfinder: {
+                uploadUrl: '/Article/Uploads?command=QuickUpload&type=Files&responseType=json'
+                }
+            })
+        .catch( error => {
+            console.error( error );
+        });
+</script>
+}
+

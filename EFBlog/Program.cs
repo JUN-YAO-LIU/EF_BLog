@@ -1,3 +1,4 @@
+using EFBlog.Applications.ArticleService;
 using EFBlog.DbAccess;
 using EFBlog.Middlewares;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// 註冊客製化介面
+builder.Services.AddTransient<IArticleService, ArticleService>();
 
 var app = builder.Build();
 

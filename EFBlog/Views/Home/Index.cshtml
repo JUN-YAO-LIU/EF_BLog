@@ -1,25 +1,38 @@
-﻿@{
+﻿@model IEnumerable<ArticleViewModel>;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-center mb-2">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <button onclick="shareUrl();">share</button>
 </div>
+<hr/>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="text-center mt-5">
+        @foreach (var item in Model)
+        {
+            <h3 class="display-4">
+                <a href="~/Article/@item.Id">@item.Title</a>
+            </h3>
+        }
+    </div>
+}
+
 
 @section Scripts {
-<script>
-    shareUrl = function() {
-        if (!navigator.share) return;
+    <script>
+        shareUrl = function() {
+            if (!navigator.share) return;
 
-        navigator.share({
+            navigator.share({
                 url: "https://mywebsite.com",
                 title: "Sharing Cool things",
                 text: "Checkout my really cool website."
             })
-            .then(() => { console.log("Shared YEEEE!!!!!"); })
-            .catch((error) => { console.log("Sharing Failed") });
-    }
-</script>
+                .then(() => { console.log("Shared YEEEE!!!!!"); })
+                .catch((error) => { console.log("Sharing Failed") });
+        }
+    </script>
 }

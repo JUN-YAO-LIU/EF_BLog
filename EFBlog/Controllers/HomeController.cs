@@ -1,4 +1,5 @@
-﻿using EFBlog.ViewModels;
+﻿using EFBlog.Applications.ArticleService;
+using EFBlog.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,64 +8,30 @@ namespace EFBlog.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IArticleService _article;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IArticleService article)
         {
             _logger = logger;
+            _article = article;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            var model = await _article.GetArticle(null);
+            var result = new List<ArticleViewModel>();
 
-        public IActionResult CreateArticle()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Article()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult PostContent(string Content)
-        {
-            TempData["Content"] = Content;
-            return RedirectToAction("Article");
-        }
-
-        // 前端欄位名稱已經固定
-        public async Task<IActionResult> Uploads(IFormFile upload)
-        {
-            if (upload.Length <= 0) return null!;
-
-            var fileName = Guid.NewGuid() + Path.GetExtension(upload.FileName).ToLower();
-
-            var filePath = Path.Combine(
-                   Directory.GetCurrentDirectory(), "wwwroot/images",
-                   fileName);
-
-            using (var stream = System.IO.File.Create(filePath))
+            if (model is not null && model.Count > 0)
             {
-                //程式寫入的本地資料夾裡面
-                await upload.CopyToAsync(stream);
+                result = model.Select(x => new ArticleViewModel
+                {
+                    Id = x.Id,
+                    ArticleContent = x.ArticleContent,
+                    Title = x.Title
+                }).ToList();
             }
 
-            var url = $"{"/images/"}{fileName}";
-
-            return Json(new
-            {
-                uploaded = 1,
-                fileName = fileName,
-                url = url,
-                error = new
-                {
-                    message = "success"
-                }
-            });
+            return View(result);
         }
 
         public IActionResult Privacy()
