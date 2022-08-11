@@ -1,6 +1,11 @@
+using EFBlog.DbAccess;
 using EFBlog.Middlewares;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationDbContext>(
+        options => options.UseSqlServer("Server=(localdb)\\MSSqlLocalDb;Database=Blog;"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
