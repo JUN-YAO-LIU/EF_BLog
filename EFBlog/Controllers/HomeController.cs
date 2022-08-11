@@ -23,10 +23,17 @@ namespace EFBlog.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Article()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult PostContent(string Content)
         {
-            return View();
+            TempData["Content"] = Content;
+            return RedirectToAction("Article");
         }
 
         // 前端欄位名稱已經固定
