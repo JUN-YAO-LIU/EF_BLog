@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFBlog.Models;
+using Microsoft.EntityFrameworkCore;
+
+#pragma warning disable CS8618
 
 namespace EFBlog.DbAccess
 {
@@ -8,5 +11,7 @@ namespace EFBlog.DbAccess
         : base(options)
         {
         }
+
+        public DbSet<Article> Articles { get; set; }
     }
 }

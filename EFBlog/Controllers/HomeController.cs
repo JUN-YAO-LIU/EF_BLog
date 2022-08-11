@@ -1,9 +1,6 @@
 ﻿using EFBlog.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System.Diagnostics;
-using System.IO;
-using System.Text.Json.Serialization;
 
 namespace EFBlog.Controllers
 {
@@ -35,12 +32,12 @@ namespace EFBlog.Controllers
         // 前端欄位名稱已經固定
         public async Task<IActionResult> Uploads(IFormFile upload)
         {
-            if (upload.Length <= 0) return null;
+            if (upload.Length <= 0) return null!;
 
             var fileName = Guid.NewGuid() + Path.GetExtension(upload.FileName).ToLower();
 
             var filePath = Path.Combine(
-                   Directory.GetCurrentDirectory(), "wwwroot/12/images",
+                   Directory.GetCurrentDirectory(), "wwwroot/images",
                    fileName);
 
             using (var stream = System.IO.File.Create(filePath))
