@@ -30,6 +30,8 @@ namespace EFBlog.Applications.ArticleService
 
         public async Task UpdateArticle(UpdateArticleViewModel model)
         {
+            GetInsertContentImages(model.ArticleContent);
+
             var a = await _db.Articles.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
 
             if (a is not null)
@@ -45,9 +47,18 @@ namespace EFBlog.Applications.ArticleService
 
         public async Task<IList<Article>> GetArticle(long? id)
         {
-            return await _db.Articles
+            if (id == null)
+            {
+                return await _db.Articles
                 .Where(x => x.IsDelete == false)
                 .ToListAsync();
+            }
+            else
+            {
+                return await _db.Articles
+                .Where(x => x.IsDelete == false && x.Id == id)
+                .ToListAsync();
+            }
         }
 
         public async Task<IList<Article>> GetUpdateArticle(long? id)
@@ -89,6 +100,27 @@ namespace EFBlog.Applications.ArticleService
             };
 
             return reslult;
+        }
+
+        private void GetInsertContentImages(string content)
+        {
+            var strList = content.Split("images/").ToList();
+            IList<Guid> imageList = new List<Guid>();
+
+            foreach (var str in strList)
+            {
+                var tempGuid = str.Substring(0, 36);
+
+                if (Guid.TryParse(tempGuid, out Guid r))
+                {
+                    imageList.Add(r);
+                }
+            }
+        }
+
+        private void RecordImages(string content)
+        {
+            // table 紀錄目前這一個 article用了哪幾個圖
         }
     }
 }
