@@ -1,0 +1,34 @@
+﻿@model UpdateArticleViewModel;
+
+<form method="post">
+    <div class="form-group">
+
+        <input asp-for="Id" class="form-control" hidden/>
+
+        標題：
+        <input asp-for="Title" class="form-control"/>
+
+        是否停用：
+        <input asp-for="IsDelete" type="checkbox" class="form-check-input"/>
+
+        <textarea asp-for="ArticleContent" class="form-control" id="editor">@Model.ArticleContent</textarea>
+
+    </div>
+    <button asp-controller="Article" asp-action="UpdateArticle" type="submit">Send</button>
+</form>
+
+@section Scripts {
+<script src="~/ckeditor6/build/ckeditor.js"></script>
+<script>
+    // ckEdit 5
+        ClassicEditor
+        .create( document.querySelector( '#editor' ) , {
+            ckfinder: {
+                uploadUrl: '/Article/Uploads?command=QuickUpload&type=Files&responseType=json'
+                }
+            })
+        .catch( error => {
+            console.error( error );
+        });
+</script>
+}
