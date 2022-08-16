@@ -20,6 +20,7 @@ namespace EFBlog.Applications.ArticleService
         {
             var article = new Article
             {
+                Title = DateTime.UtcNow.ToUniversalTime().ToString(),
                 ArticleContent = content,
                 IsDelete = false
             };

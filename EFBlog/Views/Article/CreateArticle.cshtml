@@ -1,26 +1,64 @@
-﻿<form asp-controller="Article" asp-action="CreateArticle" method="post">
-    <div class="form-group">
+﻿@section Styles {
+    <style>
+        .ck-editor__editable {
+            min-height: 500px;
+        }
 
-        <textarea name="Content" class="form-control" id="editor"></textarea>
+        .ck.ck-content .image {
+            position: relative;
+        }
 
-    </div>
-    <button type="submit">Send</button>
-</form>
+        .ck.ck-content .image img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
 
-@section Scripts {
-@*<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>*@
-<script src="~/ckeditor6/build/ckeditor.js"></script>
-<script>
-    // ckEdit 5
+        .ck.ck-content .image::before {
+            content: '';
+            padding-top: 100%;
+            display: block;
+        }
+    </style>
+}
+
+    <form asp-controller="Article" asp-action="CreateArticle" method="post">
+        <div class="form-group" style="width:700px;margin-right:auto;margin-left:auto;">
+
+            <textarea name="Content" class="form-control" id="editor" rows="50"></textarea>
+
+        </div>
+        <button type="submit">Send</button>
+    </form>
+
+    @section Scripts {
+    @*<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>*@
+    <script src="~/ckeditor6/build/ckeditor.js"></script>
+    <script>
+        // ckEdit 5
         ClassicEditor
-        .create( document.querySelector( '#editor' ) , {
-            ckfinder: {
-                uploadUrl: '/Article/Uploads?command=QuickUpload&type=Files&responseType=json'
+            .create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '/Article/Uploads'
+                },
+                image: {
+                    resizeUnit: 'px',
+                    resizeOptions: [
+                        {
+                            name: 'resizeImage:original',
+                            label: 'Original',
+                            value: '700'
+                        }
+                    ]
                 }
             })
-        .catch( error => {
-            console.error( error );
-        });
-</script>
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 }
 

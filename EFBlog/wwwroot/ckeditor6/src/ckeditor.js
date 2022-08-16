@@ -31,74 +31,77 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
 import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
+import Bookmark from '@ckpro/ckeditor5-bookmark';
 
-class Editor extends ClassicEditor {}
+class Editor extends ClassicEditor { }
 
 // Plugins to include in the build.
 Editor.builtinPlugins = [
-	Alignment,
-	Autoformat,
-	AutoImage,
-	AutoLink,
-	Autosave,
-	BlockQuote,
-	Bold,
-	CKFinderUploadAdapter,
-	CodeBlock,
-	Essentials,
-	FontBackgroundColor,
-	FontColor,
-	FontFamily,
-	FontSize,
-	Heading,
-	Image,
-	ImageCaption,
-	ImageResize,
-	ImageStyle,
-	ImageToolbar,
-	ImageUpload,
-	Indent,
-	Italic,
-	Link,
-	Paragraph,
-	RemoveFormat,
-	TextTransformation,
-	Underline
+    Alignment,
+    Autoformat,
+    AutoImage,
+    AutoLink,
+    Autosave,
+    BlockQuote,
+    Bold,
+    CKFinderUploadAdapter,
+    CodeBlock,
+    Essentials,
+    FontBackgroundColor,
+    FontColor,
+    FontFamily,
+    FontSize,
+    Heading,
+    Image,
+    ImageCaption,
+    ImageResize,
+    ImageStyle,
+    ImageToolbar,
+    ImageUpload,
+    Indent,
+    Italic,
+    Link,
+    Paragraph,
+    RemoveFormat,
+    TextTransformation,
+    Underline,
+    Bookmark
 ];
 
 // Editor configuration.
 Editor.defaultConfig = {
-	toolbar: {
-		items: [
-			'heading',
-			'fontColor',
-			'fontFamily',
-			'fontSize',
-			'fontBackgroundColor',
-			'bold',
-			'italic',
-			'underline',
-			'link',
-			'imageUpload',
-			'alignment',
-			'indent',
-			'outdent',
-			'removeFormat',
-			'codeBlock',
-			'blockQuote',
-			'undo',
-			'redo'
-		]
-	},
-	language: 'en',
-	image: {
-		toolbar: [
-			'imageTextAlternative',
-			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side'
-		]
-	}
+    toolbar: {
+        items: [
+            'heading',
+            'fontColor',
+            'fontFamily',
+            'fontSize',
+            'fontBackgroundColor',
+            'bold',
+            'italic',
+            'underline',
+            'link',
+            'imageUpload',
+            'alignment',
+            'indent',
+            'outdent',
+            'removeFormat',
+            'codeBlock',
+            'blockQuote',
+            'undo',
+            'redo',
+            'bookmark'
+        ]
+    },
+    language: 'en',
+    image: {
+        toolbar: [
+            'imageTextAlternative',
+            'imageStyle:inline',
+            'imageStyle:block',
+            'imageStyle:side'
+        ]
+    }
 };
 
 export default Editor;

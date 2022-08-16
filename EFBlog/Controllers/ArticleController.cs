@@ -34,13 +34,13 @@ namespace EFBlog.Controllers
             return Redirect("/");
         }
 
-        [HttpGet]
+        [HttpGet("CreateArticle")]
         public IActionResult CreateArticle()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("CreateArticle")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateArticle(string Content)
         {
