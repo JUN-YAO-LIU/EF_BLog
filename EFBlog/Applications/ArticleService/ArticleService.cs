@@ -2,8 +2,9 @@
 using EFBlog.DbAccess;
 using EFBlog.Models;
 using EFBlog.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace EFBlog.Applications.ArticleService
 {
@@ -84,11 +85,22 @@ namespace EFBlog.Applications.ArticleService
                    Directory.GetCurrentDirectory(), "wwwroot/images",
                    fileName);
 
-            using (var stream = System.IO.File.Create(filePath))
-            {
-                //程式寫入的本地資料夾裡面
-                await upload.CopyToAsync(stream);
-            }
+            var tempImg = Image.FromStream(upload.OpenReadStream());
+
+            //計算大小
+            int imgH = 0, imgW = 700;
+
+            imgH = (700 * tempImg.Height) / tempImg.Width;
+
+            using var image = new Bitmap(tempImg, new Size(imgW, imgH));
+
+            image.Save(filePath, ImageFormat.Jpeg);
+
+            //using (var stream = File.Create(filePath))
+            //{
+            //    //程式寫入的本地資料夾裡面
+            //    await upload.CopyToAsync(stream);
+            //}
 
             var url = $"{"/images/"}{fileName}";
 

@@ -4,7 +4,7 @@ figure {
     margin-right: auto;
 }
 
-@media (max-width: 480px) {
+/*@media (max-width: 480px) {
     figure {
         width: 100% !important;
     }
@@ -14,10 +14,10 @@ figure {
     figure {
         width: 50% !important;
     }
-}
+}*/
 
 @media (max-width: 480px) {
-    .image_resized {
+    .image img {
         width: 100% !important;
     }
 }

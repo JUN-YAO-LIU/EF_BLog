@@ -1,16 +1,13 @@
 ﻿@section Styles {
-    <style>
-        .ck-editor__editable {
-            min-height: 500px;
-        }
+<style>
+    .ck-editor__editable {
+        min-height: 500px;
+    }
 
-<<<<<<< HEAD
-        <textarea style="width:700px;" rows="5" name="Content" class="form-control" id="editor"></textarea>
-=======
-        .ck.ck-content .image {
-            position: relative;
-        }
->>>>>>> dev
+/*    .ck.ck-content .image {
+        position: relative;
+    }
+
 
         .ck.ck-content .image img {
             position: absolute;
@@ -19,50 +16,41 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
+            /*border-radius: 50%;*/
         }
 
         .ck.ck-content .image::before {
             content: '';
             padding-top: 100%;
             display: block;
-        }
-    </style>
+        }*/
+</style>
 }
 
-    <form asp-controller="Article" asp-action="CreateArticle" method="post">
-        <div class="form-group" style="width:700px;margin-right:auto;margin-left:auto;">
+<form asp-controller="Article" asp-action="CreateArticle" method="post">
+    <div class="form-group" style="width:700px;margin-right:auto;margin-left:auto;">
 
-            <textarea name="Content" class="form-control" id="editor" rows="50"></textarea>
+        <textarea name="Content" class="form-control" id="editor" rows="50"></textarea>
 
-        </div>
-        <button type="submit">Send</button>
-    </form>
+    </div>
+    <button type="submit">Send</button>
+</form>
 
     @section Scripts {
-    @*<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>*@
-    <script src="~/ckeditor6/build/ckeditor.js"></script>
-    <script>
-        // ckEdit 5
-        ClassicEditor
-            .create(document.querySelector('#editor'), {
-                ckfinder: {
-                    uploadUrl: '/Article/Uploads'
-                },
-                image: {
-                    resizeUnit: 'px',
-                    resizeOptions: [
-                        {
-                            name: 'resizeImage:original',
-                            label: 'Original',
-                            value: '700'
-                        }
-                    ]
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+
+<script src="~/ckeditor7/build/ckeditor.js"></script>
+<script>
+    // ckEdit 5
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            removePlugins: [ 'ImageResize' ,'ImageStyle' ,'ImageToolbar' ],
+            ckfinder: {
+                uploadUrl: '/Article/Uploads'
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 }
 
