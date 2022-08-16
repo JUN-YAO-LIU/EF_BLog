@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(
-        options => options.UseSqlServer("Server=(localdb)\\MSSqlLocalDb;Database=Blog;"));
+        //options => options.UseSqlServer("Server=(localdb)\\MSSqlLocalDb;Database=Blog;"));
+        options => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Blog;Trusted_Connection=True;"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
