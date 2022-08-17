@@ -11,7 +11,7 @@
         是否停用：
         <input asp-for="IsDelete" type="checkbox" class="form-check-input"/>
 
-        <textarea asp-for="ArticleContent" class="form-control" id="editor">@Model.ArticleContent</textarea>
+        <textarea asp-for="ArticleContent" class="form-control" id="editor" style="width:700px;margin-right:auto;margin-left:auto;">@Model.ArticleContent</textarea>
 
     </div>
     <button asp-controller="Article" asp-action="UpdateArticle" type="submit">Send</button>
@@ -24,6 +24,7 @@
         ClassicEditor
         .create( document.querySelector( '#editor' ) , {
             ckfinder: {
+                removePlugins: [ 'ImageResize' ,'ImageStyle' ,'ImageToolbar' ],
                 uploadUrl: '/Article/Uploads?command=QuickUpload&type=Files&responseType=json'
                 }
             })
