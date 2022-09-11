@@ -1,5 +1,6 @@
 ﻿using EFBlog.Applications.ArticleService;
 using EFBlog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFBlog.Controllers
@@ -34,12 +35,14 @@ namespace EFBlog.Controllers
             return Redirect("/");
         }
 
+        [Authorize]
         [HttpGet("CreateArticle")]
         public IActionResult CreateArticle()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost("CreateArticle")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateArticle(string Content)
@@ -92,6 +95,7 @@ namespace EFBlog.Controllers
 
         // 細節 get post 的function name 相同 可能會出現無法post 的情況 錯誤405
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateArticle(UpdateArticleViewModel model)
         {
@@ -100,6 +104,7 @@ namespace EFBlog.Controllers
         }
 
         // 前端欄位名稱已經固定
+        [Authorize]
         public async Task<IActionResult> Uploads(IFormFile upload)
         {
             var obj = await _article.UploadImage(upload);

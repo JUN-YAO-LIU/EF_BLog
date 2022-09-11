@@ -85,22 +85,22 @@ namespace EFBlog.Applications.ArticleService
                    Directory.GetCurrentDirectory(), "wwwroot/images",
                    fileName);
 
-            var tempImg = Image.FromStream(upload.OpenReadStream());
+            //var tempImg = Image.FromStream(upload.OpenReadStream());
 
-            //計算大小
-            int imgH = 0, imgW = 700;
+            ////計算大小
+            //int imgH = 0, imgW = 700;
 
-            imgH = (700 * tempImg.Height) / tempImg.Width;
+            //imgH = (700 * tempImg.Height) / tempImg.Width;
 
-            using var image = new Bitmap(tempImg, new Size(imgW, imgH));
+            //using var image = new Bitmap(tempImg, new Size(imgW, imgH));
 
-            image.Save(filePath, ImageFormat.Jpeg);
+            //image.Save(filePath, ImageFormat.Jpeg);
 
-            //using (var stream = File.Create(filePath))
-            //{
-            //    //程式寫入的本地資料夾裡面
-            //    await upload.CopyToAsync(stream);
-            //}
+            using (var stream = File.Create(filePath))
+            {
+                //程式寫入的本地資料夾裡面
+                await upload.CopyToAsync(stream);
+            }
 
             var url = $"{"/images/"}{fileName}";
 
@@ -122,8 +122,12 @@ namespace EFBlog.Applications.ArticleService
 
             foreach (var str in strList)
             {
-                var tempGuid = str.Substring(0, 36);
+                if (str.Length < 36)
+                {
+                    continue;
+                }
 
+                var tempGuid = str.Substring(0, 36);
                 if (Guid.TryParse(tempGuid, out Guid r))
                 {
                     imageList.Add(r);

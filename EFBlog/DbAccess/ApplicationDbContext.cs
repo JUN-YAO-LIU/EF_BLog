@@ -13,5 +13,6 @@ namespace EFBlog.DbAccess
         }
 
         public DbSet<Article> Articles { get; set; }
+        public DbSet<AuthUser> AuthUsers { get; set; }
     }
 }
