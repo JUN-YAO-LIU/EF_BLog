@@ -17,8 +17,6 @@
             }
             catch (Exception ex)
             {
-                await context.Response
-                    .WriteAsync($"{GetType().Name} catch exception. Message: {ex.Message}");
             }
         }
     }

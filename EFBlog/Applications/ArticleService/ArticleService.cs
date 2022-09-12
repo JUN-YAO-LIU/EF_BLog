@@ -32,7 +32,7 @@ namespace EFBlog.Applications.ArticleService
 
         public async Task UpdateArticle(UpdateArticleViewModel model)
         {
-            GetInsertContentImages(model.ArticleContent);
+            // GetInsertContentImages(model.ArticleContent);
 
             var a = await _db.Articles.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
 

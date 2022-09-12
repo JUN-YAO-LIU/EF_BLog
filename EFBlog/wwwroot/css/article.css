@@ -1,14 +1,23 @@
-/*@media (max-width: 480px) {
-    figure {
-        width: 100% !important;
+.Content {
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width: 480px) {
+    .Content {
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
     }
 }
 
-@media (min-width: 480px) {
-    figure {
-        width: 50% !important;
+@media (max-width: 480px) {
+    p {
+        padding-right: 12px;
+        padding-left: 12px;
     }
-}*/
+}
 
 @media (max-width: 480px) {
     .image img {
