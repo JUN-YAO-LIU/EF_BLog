@@ -53,12 +53,15 @@ namespace EFBlog.Applications.ArticleService
             {
                 return await _db.Articles
                 .Where(x => x.IsDelete == false)
+                .OrderByDescending(x => x.Id)
+                .Take(1)
                 .ToListAsync();
             }
             else
             {
                 return await _db.Articles
                 .Where(x => x.IsDelete == false && x.Id == id)
+                .OrderByDescending(x => x.Id)
                 .ToListAsync();
             }
         }
@@ -73,6 +76,14 @@ namespace EFBlog.Applications.ArticleService
             {
                 return await _db.Articles.Where(x => x.Id == id).ToListAsync();
             }
+        }
+
+        public async Task<IList<Article>> GetMoreArticleList(long id)
+        {
+            return await _db.Articles
+                .Where(x => x.Id < id)
+                .OrderByDescending(x => x.Id)
+                .ToListAsync();
         }
 
         public async Task<ImageUploadResponse> UploadImage(IFormFile upload)
@@ -133,11 +144,6 @@ namespace EFBlog.Applications.ArticleService
                     imageList.Add(r);
                 }
             }
-        }
-
-        private void RecordImages(string content)
-        {
-            // table 紀錄目前這一個 article用了哪幾個圖
         }
     }
 }

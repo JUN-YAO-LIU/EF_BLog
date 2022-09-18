@@ -71,6 +71,64 @@ namespace EFBlog.Controllers
             return View(result);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetMoreArticle()
+        {
+            var nextArticleId = TempData["ArticleLastId"];
+
+            if (TempData["ArticleLastId"] != null && int.TryParse(TempData["ArticleLastId"]!.ToString(), out var i))
+            {
+                var model = await _article.GetMoreArticleList(i);
+                var result = new List<UpdateArticleViewModel>();
+
+                if (model is not null && model.Count > 0)
+                {
+                    result = model.Select(x => new UpdateArticleViewModel
+                    {
+                        Id = x.Id,
+                        ArticleContent = x.ArticleContent,
+                        Title = x.Title,
+                        IsDelete = x.IsDelete
+                    }).Take(1).ToList();
+
+                    TempData["ArticleLastId"] = result.Last().Id.ToString();
+                }
+
+                return Json(result);
+            }
+
+            return Json(string.Empty);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetMoreArticleToPartialView()
+        {
+            var nextArticleId = TempData["ArticleLastId"];
+
+            if (TempData["ArticleLastId"] != null && int.TryParse(TempData["ArticleLastId"]!.ToString(), out var i))
+            {
+                var model = await _article.GetMoreArticleList(i);
+                var result = new List<UpdateArticleViewModel>();
+
+                if (model is not null && model.Count > 0)
+                {
+                    result = model.Select(x => new UpdateArticleViewModel
+                    {
+                        Id = x.Id,
+                        ArticleContent = x.ArticleContent,
+                        Title = x.Title,
+                        IsDelete = x.IsDelete
+                    }).Take(1).ToList();
+
+                    TempData["ArticleLastId"] = result.Last().Id.ToString();
+                }
+
+                return PartialView("/Views/Article/_ArticlePartialView.cshtml", result);
+            }
+
+            return PartialView(null);
+        }
+
         [HttpGet("GetArticle/{id}")]
         public async Task<IActionResult> GetArticle(long id)
         {

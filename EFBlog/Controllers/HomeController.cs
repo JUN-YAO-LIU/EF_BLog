@@ -29,6 +29,8 @@ namespace EFBlog.Controllers
                     ArticleContent = x.ArticleContent,
                     Title = x.Title
                 }).ToList();
+
+                TempData["ArticleLastId"] = result.Last().Id.ToString();
             }
 
             return View(result);
