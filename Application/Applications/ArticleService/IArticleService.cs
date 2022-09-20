@@ -15,5 +15,7 @@ namespace Application.Applications.ArticleService
         Task<IList<Article>> GetArticle(long? id);
 
         Task<IList<Article>> GetUpdateArticle(long? id);
+
+        Task<IList<Article>> GetMoreArticleList(long id);
     }
 }

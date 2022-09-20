@@ -10,7 +10,7 @@
 <hr/>
 @if (Model != null && Model.Count() > 0)
 {
-    <div class="text-center mt-5">
+    <div id="articleIndex" class="text-center mt-5">
         @foreach (var item in Model)
         {
             <h3 class="display-4">
@@ -19,9 +19,35 @@
         }
     </div>
 }
-
+<div class="text-center">
+    <button id="getArticles" type="button">更多文章</button>
+</div>
 
 @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script>
+    $("#getArticles").click(function(){
+        $.ajax({
+          type: 'Post',
+          url: "/Article/GetMoreArticle",
+          //dataType: "json",
+           success: function(data){
+               console.log(data)
+              for(let i =0;i< data.length;i++)
+              {
+                    $('#articleIndex').append(`
+                        <h3 class="display-4">
+                            <a href=/Article/${data[i].id}>${data[i].title}</a>
+                        </h3>
+                    `);
+              }
+            },
+            error: function(data){
+                   console.log(data)
+            }
+        });
+    });
+</script>
     <script>
         shareUrl = function() {
             if (!navigator.share) return;
