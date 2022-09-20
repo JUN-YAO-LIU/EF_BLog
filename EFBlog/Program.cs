@@ -1,19 +1,22 @@
-using EFBlog.Applications.ArticleService;
-using EFBlog.DbAccess;
-using EFBlog.Middlewares;
+using Application.Applications.ArticleService;
+using Application.Applications.Auth;
+using Infrastructure.Middlewares;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(
-options => options.UseSqlServer("Server=(localdb)\\MSSqlLocalDb;Database=Blog;"));
-//options => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Blog;Trusted_Connection=True;"));
+//options => options.UseSqlServer("Server=(localdb)\\MSSqlLocalDb;Database=Blog;"));
+options => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Blog;Trusted_Connection=True;"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // 註冊客製化介面
+//builder.Services.AddTransient<IArticleService, ArticleService>();
+//builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IArticleService, ArticleService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 

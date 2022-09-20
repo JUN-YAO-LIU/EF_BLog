@@ -30,22 +30,22 @@ namespace Application.Applications.ArticleService
             await _db.SaveChangesAsync();
         }
 
-        //public async Task UpdateArticle(UpdateArticleViewModel model)
-        //{
-        //    GetInsertContentImages(model.ArticleContent);
+        public async Task UpdateArticle(UpdateArticleViewModel model)
+        {
+            GetInsertContentImages(model.ArticleContent);
 
-        //    var a = await _db.Articles.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
+            var a = await _db.Articles.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
 
-        //    if (a is not null)
-        //    {
-        //        a.Title = model.Title;
-        //        a.ArticleContent = model.ArticleContent;
-        //        a.IsDelete = model.IsDelete;
+            if (a is not null)
+            {
+                a.Title = model.Title;
+                a.ArticleContent = model.ArticleContent;
+                a.IsDelete = model.IsDelete;
 
-        //        _db.Articles.Update(a);
-        //        await _db.SaveChangesAsync();
-        //    }
-        //}
+                _db.Articles.Update(a);
+                await _db.SaveChangesAsync();
+            }
+        }
 
         public async Task<IList<Article>> GetArticle(long? id)
         {

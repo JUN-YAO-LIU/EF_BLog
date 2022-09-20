@@ -1,4 +1,6 @@
-﻿namespace EFBlog.Middlewares
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Infrastructure.Middlewares
 {
     public class ExceptionMiddleware
     {

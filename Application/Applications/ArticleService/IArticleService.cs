@@ -10,7 +10,7 @@ namespace Application.Applications.ArticleService
 
         Task CreateArticle(string content);
 
-        //   Task UpdateArticle(UpdateArticleViewModel model);
+        Task UpdateArticle(UpdateArticleViewModel model);
 
         Task<IList<Article>> GetArticle(long? id);
 
