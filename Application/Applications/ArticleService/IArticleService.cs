@@ -1,5 +1,5 @@
 ﻿using Application.Applications.ArticleService.Models;
-using Infrastructure.Entities;
+using Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Http;
 
 namespace Application.Applications.ArticleService

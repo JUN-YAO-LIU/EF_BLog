@@ -1,4 +1,4 @@
-﻿using Infrastructure.Entities;
+﻿using Infrastructure.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
 #pragma warning disable CS8618

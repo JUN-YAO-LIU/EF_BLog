@@ -25,29 +25,31 @@
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+   
     <script>
-    $("#getArticles").click(function(){
-        $.ajax({
-          type: 'Post',
-          url: "/Article/GetMoreArticle",
-          //dataType: "json",
-           success: function(data){
-               console.log(data)
-              for(let i =0;i< data.length;i++)
-              {
-                    $('#articleIndex').append(`
-                        <h3 class="display-4">
-                            <a href=/Article/${data[i].id}>${data[i].title}</a>
-                        </h3>
-                    `);
-              }
-            },
-            error: function(data){
+        $("#getArticles").click(function(){
+            $.ajax({
+              type: 'Post',
+              url: "/Article/GetMoreArticle",
+              //dataType: "json",
+               success: function(data){
                    console.log(data)
-            }
+                  for(let i =0;i< data.length;i++)
+                  {
+                        $('#articleIndex').append(`
+                            <h3 class="display-4">
+                                <a href=/Article/${data[i].id}>${data[i].title}</a>
+                            </h3>
+                        `);
+                  }
+                },
+                error: function(data){
+                       console.log(data)
+                }
+            });
         });
-    });
-</script>
+    </script>
+
     <script>
         shareUrl = function() {
             if (!navigator.share) return;
