@@ -1,4 +1,4 @@
-﻿using Application.Applications.ArticleService;
+﻿using Application.Services.ArticleService;
 using EFBlog.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

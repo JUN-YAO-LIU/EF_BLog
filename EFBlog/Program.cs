@@ -1,5 +1,5 @@
-using Application.Applications.ArticleService;
-using Application.Applications.Auth;
+using Application.Services.ArticleService;
+using Application.Services.Auth;
 using Infrastructure.Middlewares;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;

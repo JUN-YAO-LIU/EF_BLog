@@ -1,8 +1,8 @@
-﻿using Application.Applications.ArticleService.Models;
+﻿using Application.Services.ArticleService.Models;
 using Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.Applications.ArticleService
+namespace Application.Services.ArticleService
 {
     public interface IArticleService
     {

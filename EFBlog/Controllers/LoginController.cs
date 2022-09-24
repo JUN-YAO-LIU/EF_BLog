@@ -1,4 +1,4 @@
-﻿using Application.Applications.Auth;
+﻿using Application.Services.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;

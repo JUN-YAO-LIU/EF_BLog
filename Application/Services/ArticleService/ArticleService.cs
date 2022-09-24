@@ -1,4 +1,4 @@
-﻿using Application.Applications.ArticleService.Models;
+﻿using Application.Services.ArticleService.Models;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Http;
@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace Application.Applications.ArticleService
+namespace Application.Services.ArticleService
 {
     public class ArticleService : IArticleService
     {

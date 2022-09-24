@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Application.Applications.Auth
+namespace Application.Services.Auth
 {
     public interface IAuthService
     {
