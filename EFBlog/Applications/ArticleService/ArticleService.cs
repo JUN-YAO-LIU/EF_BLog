@@ -82,6 +82,12 @@ namespace EFBlog.Applications.ArticleService
         {
             return await _db.Articles
                 .Where(x => x.Id < id)
+                .Select(x =>
+                new Article
+                {
+                    Id = x.Id,
+                    Title = x.AuthUser.Account
+                })
                 .OrderByDescending(x => x.Id)
                 .ToListAsync();
         }

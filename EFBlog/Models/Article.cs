@@ -10,10 +10,15 @@ namespace EFBlog.Models
         [Required]
         [StringLength(20)]
         [Column(TypeName = "varchar")]
-        public string Title { get; set; } = string.Empty;
+        public string Title { get; set; }
 
-        public string ArticleContent { get; set; } = string.Empty;
+        public string? ArticleContent { get; set; }
 
         public bool IsDelete { get; set; }
+
+        [ForeignKey("Account")]
+        public string UserId { get; set; }
+
+        public AuthUser AuthUser { get; set; }
     }
 }
