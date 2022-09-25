@@ -22,6 +22,7 @@ import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar.js';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload.js';
 import PageBreak from '@ckeditor/ckeditor5-page-break/src/pagebreak.js';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
+import Bookmark from 'ckeditor5-bookmark';
 //import ImageResizeEditing from '@ckeditor/ckeditor5-image/src/imageresize/imageresizeedititing';
 //import ImageResizeButtons from '@ckeditor/ckeditor5-image/src/imageresize/imageresizebuttons';
 
@@ -48,6 +49,7 @@ Editor.builtinPlugins = [
     ImageUpload,
     PageBreak,
     Paragraph,
+    Bookmark,
 ];
 
 // Editor configuration.
@@ -87,7 +89,7 @@ Editor.defaultConfig = {
             }
         ],
         toolbar: [
-
+            'bookmark'
         ]
     }
 };

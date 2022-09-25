@@ -1,6 +1,7 @@
 ﻿using Application.Services.ArticleService;
 using Application.Services.ArticleService.Models;
 using EFBlog.ViewModels;
+using Infrastructure.Blockchain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

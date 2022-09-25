@@ -1,5 +1,6 @@
 ﻿using Application.Services.ArticleService;
 using EFBlog.ViewModels;
+using Infrastructure.Blockchain;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -9,11 +10,19 @@ namespace EFBlog.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IArticleService _article;
+        private readonly IBlockchainService _blockchain;
 
-        public HomeController(ILogger<HomeController> logger, IArticleService article)
+        public HomeController(ILogger<HomeController> logger, IArticleService article, IBlockchainService blockchain)
         {
             _logger = logger;
             _article = article;
+            _blockchain = blockchain;
+        }
+
+        [HttpPost]
+        public async Task blockchain()
+        {
+            await _blockchain.GetAssetTokens();
         }
 
         public async Task<IActionResult> Index()

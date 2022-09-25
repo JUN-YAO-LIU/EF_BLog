@@ -1,5 +1,6 @@
 using Application.Services.ArticleService;
 using Application.Services.Auth;
+using Infrastructure.Blockchain;
 using Infrastructure.Middlewares;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -19,6 +20,7 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IArticleService, ArticleService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IBlockchainService, BlockchainService>();
 
 builder.Services
     .AddAuthentication(options => options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme)
