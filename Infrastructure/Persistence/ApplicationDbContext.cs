@@ -12,7 +12,9 @@ namespace Infrastructure.Persistence
         {
         }
 
+        // EntityFramework-CreateDataTable
         public DbSet<Article> Articles { get; set; }
+
         public DbSet<AuthUser> AuthUsers { get; set; }
     }
 }
