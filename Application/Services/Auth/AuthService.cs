@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Applications.Auth
+namespace Application.Services.Auth
 {
     public class AuthService : IAuthService
     {

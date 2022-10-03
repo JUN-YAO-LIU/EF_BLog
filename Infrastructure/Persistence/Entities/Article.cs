@@ -1,5 +1,6 @@
 ﻿namespace Infrastructure.Persistence.Entities
 {
+    // Entity-CreateAndDesignArticle
     public class Article
     {
         public long Id { get; set; }

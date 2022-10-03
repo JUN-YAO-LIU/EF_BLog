@@ -1,5 +1,5 @@
-﻿using Application.Applications.ArticleService;
-using Application.Applications.ArticleService.Models;
+﻿using Application.Services.ArticleService;
+using Application.Services.ArticleService.Models;
 using EFBlog.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

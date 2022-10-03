@@ -1,4 +1,4 @@
-﻿namespace Application.Applications.ArticleService.Models
+﻿namespace Application.Services.ArticleService.Models
 {
     public class ImageUploadResponse
     {
