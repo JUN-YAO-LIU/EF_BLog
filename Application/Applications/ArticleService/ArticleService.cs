@@ -66,6 +66,14 @@ namespace Application.Applications.ArticleService
             }
         }
 
+        public async Task<IList<Article>> VagueSearchAsync(string id)
+        {
+            return await _db.Articles
+            .Where(x => x.IsDelete == false && x.Title.Contains(id))
+            .OrderByDescending(x => x.Id)
+            .ToListAsync();
+        }
+
         public async Task<IList<Article>> GetUpdateArticle(long? id)
         {
             if (id == null)

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArticleViewModel>;
+﻿@model IEnumerable<ArticleViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -19,6 +19,9 @@
         }
     </div>
 }
+
+ @await Html.PartialAsync("../PartialViews/_ArticlePartialView",Model)
+
 <div class="text-center">
     <button id="getArticles" type="button">更多文章</button>
 </div>

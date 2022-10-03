@@ -17,5 +17,7 @@ namespace Application.Applications.ArticleService
         Task<IList<Article>> GetUpdateArticle(long? id);
 
         Task<IList<Article>> GetMoreArticleList(long id);
+
+        Task<IList<Article>> VagueSearchAsync(string id);
     }
 }
