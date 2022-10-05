@@ -20,6 +20,7 @@
     </div>
 }
 <div class="text-center">
+    @Html.AntiForgeryToken()
     <button id="getArticles" type="button">更多文章</button>
 </div>
 
@@ -28,10 +29,14 @@
    
     <script>
         $("#getArticles").click(function(){
+            var token = $('input[name="__RequestVerificationToken"]').val();
             $.ajax({
               type: 'Post',
               url: "/Article/GetMoreArticle",
               //dataType: "json",
+              data: { 
+                __RequestVerificationToken: token, 
+               },
                success: function(data){
                    console.log(data)
                   for(let i =0;i< data.length;i++)

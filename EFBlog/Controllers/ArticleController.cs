@@ -123,6 +123,7 @@ namespace EFBlog.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetMoreArticle()
         {
             var nextArticleId = TempData["ArticleLastId"];
@@ -140,7 +141,7 @@ namespace EFBlog.Controllers
                         ArticleContent = x.ArticleContent,
                         Title = x.Title,
                         IsDelete = x.IsDelete
-                    }).Take(1).ToList();
+                    }).Take(2).ToList();
 
                     TempData["ArticleLastId"] = result.Last().Id.ToString();
                 }

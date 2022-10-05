@@ -1,10 +1,15 @@
 ﻿@model ArticleViewModel
 @section styles {
   <link rel="stylesheet" href="~/css/article.css?@DateTime.Now.ToString("yyyyMMddhhmmss")">
+  <link rel="stylesheet"  href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/ir-black.min.css">
 }
 
 <div class="mb-2" style="width:700px; margin-left: auto;margin-right: auto;">
     <h1 class="text-center display-4 mb-5">@Model.Title</h1>
     @Html.Raw(Model.ArticleContent)
 </div>
+@section Scripts {
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+}
 

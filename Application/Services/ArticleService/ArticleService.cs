@@ -54,7 +54,7 @@ namespace Application.Services.ArticleService
                 return await _db.Articles
                 .Where(x => x.IsDelete == false)
                 .OrderByDescending(x => x.Id)
-                .Take(1)
+                .Take(2)
                 .ToListAsync();
             }
             else
