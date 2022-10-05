@@ -36,6 +36,46 @@ namespace EFBlog.Controllers
             return Redirect("/");
         }
 
+        [HttpGet("TestPartialView")]
+        public async Task<IActionResult> TestPartialView()
+        {
+            var model = await _article.GetArticle(null);
+            var result = new List<ArticleViewModel>();
+
+            if (model is not null && model.Count > 0)
+            {
+                result = model.Select(x => new ArticleViewModel
+                {
+                    Id = x.Id,
+                    ArticleContent = x.ArticleContent,
+                    Title = x.Title
+                }).ToList();
+
+                TempData["ArticleLastId"] = result.Last().Id.ToString();
+            }
+
+            return View(result);
+        }
+
+        [HttpGet("Article/AjaxSearch/{id}")]
+        public async Task<IActionResult> AjaxSearch(string id)
+        {
+            var model = await _article.VagueSearchAsync(id);
+            var result = new List<ArticleViewModel>();
+
+            if (model is not null && model.Count > 0)
+            {
+                result = model.Select(x => new ArticleViewModel
+                {
+                    Id = x.Id,
+                    ArticleContent = x.ArticleContent,
+                    Title = x.Title
+                }).ToList();
+            }
+
+            return PartialView("../PartialViews/_ArticlePartialView", result);
+        }
+
         [Authorize]
         [HttpGet("CreateArticle")]
         public IActionResult CreateArticle()

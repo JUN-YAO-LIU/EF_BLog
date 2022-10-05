@@ -16,12 +16,12 @@ namespace EFBlog.DbAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("EFBlog.Models.Article", b =>
+            modelBuilder.Entity("Infrastructure.Persistence.Entities.Article", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace EFBlog.DbAccess.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("EFBlog.Models.AuthUser", b =>
+            modelBuilder.Entity("Infrastructure.Persistence.Entities.AuthUser", b =>
                 {
                     b.Property<string>("Account")
                         .HasColumnType("nvarchar(450)");

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ArticleViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center mb-2">
+    <h1 class="display-4">TestPartial</h1>
+</div>
+<hr />
+
+<div class="mb-3">
+
+    模糊查詢：
+    <input id="inputseatch"  />
+   
+</div>
+
+<div id="divPartial">
+    @await Html.PartialAsync("../PartialViews/_ArticlePartialView",Model)
+</div>
+
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#inputseatch").change(function() {
+                let d = $("#inputseatch").val();
+                $('#divPartial').load('/Article/AjaxSearch' + "/" + d);
+            });
+        });
+    </script>
+}
