@@ -28,6 +28,19 @@ namespace Application.Services.ArticleService
 
             _db.Articles.Add(article);
             await _db.SaveChangesAsync();
+
+            int i = 1;
+            var filePath = Path.Combine(
+                   Directory.GetCurrentDirectory(), "wwwroot/articles",
+                   i.ToString() + ".txt");
+
+            while (File.Exists(filePath))
+            {
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/articles", i.ToString() + ".txt");
+                i++;
+            }
+
+            File.WriteAllText(filePath, content);
         }
 
         public async Task UpdateArticle(UpdateArticleViewModel model)
@@ -49,6 +62,33 @@ namespace Application.Services.ArticleService
 
         public async Task<IList<Article>> GetArticle(long? id)
         {
+            //string path = Path.Combine(
+            //       Directory.GetCurrentDirectory(), "wwwroot/articles",
+            //       i.ToString() + ".txt");
+
+            // Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+
+            var dataList = new List<Article>();
+
+            var filePaths = Directory.EnumerateFiles(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/articles"));
+
+            if (filePaths is not null && filePaths.Count() > 0)
+            {
+                foreach (var file in filePaths)
+                {
+                    string readText = File.ReadAllText(file);
+
+                    dataList.Add(new Article
+                    {
+                        ArticleContent = readText,
+                        Title = "1",
+                    });
+                }
+
+                return dataList;
+            }
+
+            //string readText = File.ReadAllText(path);
             if (id == null)
             {
                 return await _db.Articles

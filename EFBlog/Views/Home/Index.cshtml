@@ -8,7 +8,7 @@
     <h1 class="display-4">Welcome</h1>
 </div>
 <hr/>
-@if (Model != null && Model.Count() > 0)
+@*@if (Model != null && Model.Count() > 0)
 {
     <div id="articleIndex" class="text-center mt-5">
         @foreach (var item in Model)
@@ -18,7 +18,7 @@
             </h3>
         }
     </div>
-}
+}*@
 
  @await Html.PartialAsync("../PartialViews/_ArticlePartialView",Model)
 
